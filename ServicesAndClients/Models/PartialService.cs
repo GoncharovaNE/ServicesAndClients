@@ -9,18 +9,32 @@ namespace ServicesAndClients.Models
 {
     public partial class Service
     {
-        /*public bool IsVisCostWithDis
+        public bool IsVisitableEditDelBut
         {
-            get => isVisCostWithDis =;
-            set
+            get
             {
+                bool isVisitableEditDelBut = false;
+
+                string kodAdmin;
+                if (kodAdmin == "0000")
+                {   
+                   return isVisitableEditDelBut = true;  
+                }               
+                return isVisitableEditDelBut = false;
+            }
+        } 
+        public bool IsVisCostWithDis
+        {
+            get
+            {
+                bool isVisCostWithDis;
                 if (Discount != null)
                 {
-                    isVisCostWithDis = true;
+                    return isVisCostWithDis = true;
                 }
-                else isVisCostWithDis = false;
+                return isVisCostWithDis = false;
             }
-        }*/
+        }
         public string CostAndMin
         {
             get
@@ -46,6 +60,16 @@ namespace ServicesAndClients.Models
                     return $"* скидка {dis}%";
                 }
                 else return "";                
+            }
+        }
+
+        public string Images
+        {
+            get
+            {
+                MainImagePath = MainImagePath.Replace('\\', '/');
+                string im = "/Assets/" + MainImagePath;
+                return im;
             }
         }
     }

@@ -8,22 +8,28 @@
 			 x:DataType="vm:MainPageVM">
 
 	<ScrollViewer>
-		<StackPanel>		
+		<StackPanel>
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Border BorderBrush="AliceBlue">
+						<Border BorderBrush="Gray" BorderThickness="2" Padding="5 5 5 5" CornerRadius="2">
 							<StackPanel Orientation="Horizontal">
 								<StackPanel>
-									<Image Source="{Binding MainImagePath}" Height="50" Width="50" ></Image>
+									<Border BorderBrush="Gray" BorderThickness="2" Margin="0 0 20 0" CornerRadius="2">
+									<Image Source="{Binding Images}" Height="90" Width="90"></Image>
+									</Border>
 								</StackPanel>
 								<StackPanel>
 									<TextBlock Text="{Binding Title}"></TextBlock>
 									<StackPanel  Orientation="Horizontal">
-										<!--<TextBlock Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>-->
+										<TextBlock Classes="UpdateCost" Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>
 										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
 									</StackPanel>									
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
+									<StackPanel Orientation="Horizontal">
+										<Button Content="Редактировать" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
+										<Button Content="Удалить" ></Button>
+									</StackPanel>
 								</StackPanel>
 							</StackPanel>
 						</Border>

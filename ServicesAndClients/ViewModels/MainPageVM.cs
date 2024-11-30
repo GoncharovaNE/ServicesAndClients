@@ -17,7 +17,26 @@ namespace ServicesAndClients.ViewModels
 
         public MainPageVM() 
         {
-            ServicesList = MainWindowViewModel.myConnection.Services.ToList();            
-        }        
+            ServicesList = MainWindowViewModel.myConnection.Services.ToList();
+        }
+
+        bool isVisitableEditDelBut = false;
+
+        string kodAdmin;
+
+        public string KodAdmin { get => kodAdmin; set => this.RaiseAndSetIfChanged(ref kodAdmin, value); }
+        public bool IsVisitableEditDelBut { get => isVisitableEditDelBut; set => this.RaiseAndSetIfChanged(ref isVisitableEditDelBut, value); }
+
+        public void GetKodAdmin()
+        {
+            if (kodAdmin == null || kodAdmin != "0000")
+            {
+                MainWindowViewModel.Instance.PageContent = new MainPage();
+            }
+            else if(kodAdmin == "0000")
+            {
+                MainWindowViewModel.Instance.PageContent = new MainPage();
+            }
+        }
     }
 }
