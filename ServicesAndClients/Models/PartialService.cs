@@ -8,21 +8,7 @@ using ServicesAndClients.ViewModels;
 namespace ServicesAndClients.Models
 {
     public partial class Service
-    {
-        public bool IsVisitableEditDelBut
-        {
-            get
-            {
-                bool isVisitableEditDelBut = false;
-
-                string kodAdmin;
-                if (kodAdmin == "0000")
-                {   
-                   return isVisitableEditDelBut = true;  
-                }               
-                return isVisitableEditDelBut = false;
-            }
-        } 
+    {      
         public bool IsVisCostWithDis
         {
             get
@@ -43,10 +29,23 @@ namespace ServicesAndClients.Models
                 if (Discount != null)
                 {
                     float dif = Cost * (float)Discount;
-                    float cost = Cost - dif;
+                    float cost = Cost - dif;                    
                     return $"{cost} рублей за {min} минут";
                 }
                 return $"{Cost} рублей за {min} минут";
+            }
+        }
+
+        public string Color
+        {
+            get
+            {
+                string color;
+                if (Discount != null)
+                {
+                    return color = "#effc73";
+                }
+                return "";
             }
         }
 
@@ -61,16 +60,6 @@ namespace ServicesAndClients.Models
                 }
                 else return "";                
             }
-        }
-
-        public string Images
-        {
-            get
-            {
-                MainImagePath = MainImagePath.Replace('\\', '/');
-                string im = "/Assets/" + MainImagePath;
-                return im;
-            }
-        }
+        }        
     }
 }

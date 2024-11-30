@@ -5,19 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ServicesAndClients.MainPage"
-			 x:DataType="vm:MainPageVM">
+			 x:DataType="vm:MainPageVM"
+			 xmlns:conv="using:ServicesAndClients.Converters">
+
+	<UserControl.Resources>
+		<conv:ImageConvert x:Key="ImageConvert"></conv:ImageConvert>
+	</UserControl.Resources>
 
 	<ScrollViewer>
-		<StackPanel>
-			<ListBox ItemsSource="{Binding ServicesList}">
+		<StackPanel Background="White">
+			<StackPanel IsVisible="{Binding IsVisitableAdmin}">
+				<TextBox Watermark="Введите код администратора" Text="{Binding KodAdmin}"></TextBox>
+				<Button Content="Подтвердить" Command="{Binding GetKodAdmin}"></Button>
+			</StackPanel>
+			<ListBox ItemsSource="{Binding ServicesList}" Background="White">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Border BorderBrush="Gray" BorderThickness="2" Padding="5 5 5 5" CornerRadius="2">
+						<Border BorderBrush="Gray" BorderThickness="2" Padding="5 5 5 5" CornerRadius="2" Background="{Binding Color}">
 							<StackPanel Orientation="Horizontal">
-								<StackPanel>
-									<Border BorderBrush="Gray" BorderThickness="2" Margin="0 0 20 0" CornerRadius="2">
-									<Image Source="{Binding Images}" Height="90" Width="90"></Image>
-									</Border>
+								<StackPanel Background="White" Height="90" Width="90" Margin="0 0 20 0">
+									<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Height="90" Width="90">
+									<Image Source="{Binding MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
+									</Border> 
 								</StackPanel>
 								<StackPanel>
 									<TextBlock Text="{Binding Title}"></TextBlock>
@@ -26,9 +35,9 @@
 										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
 									</StackPanel>									
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
-									<StackPanel Orientation="Horizontal">
-										<Button Content="Редактировать" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
-										<Button Content="Удалить" ></Button>
+									<StackPanel Orientation="Horizontal" IsVisible="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).IsVisitableEditDelBut}">
+										<Button Content="Редактировать"></Button>
+										<Button Content="Удалить"></Button>
 									</StackPanel>
 								</StackPanel>
 							</StackPanel>

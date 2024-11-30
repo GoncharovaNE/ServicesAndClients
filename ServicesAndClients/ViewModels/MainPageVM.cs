@@ -21,21 +21,26 @@ namespace ServicesAndClients.ViewModels
         }
 
         bool isVisitableEditDelBut = false;
+        
+        bool isVisitableAdmin = true;
 
         string kodAdmin;
 
         public string KodAdmin { get => kodAdmin; set => this.RaiseAndSetIfChanged(ref kodAdmin, value); }
         public bool IsVisitableEditDelBut { get => isVisitableEditDelBut; set => this.RaiseAndSetIfChanged(ref isVisitableEditDelBut, value); }
+        public bool IsVisitableAdmin { get => isVisitableAdmin; set => this.RaiseAndSetIfChanged(ref isVisitableAdmin, value); }
 
         public void GetKodAdmin()
         {
-            if (kodAdmin == null || kodAdmin != "0000")
+            if (KodAdmin == null || KodAdmin != "0000")
             {
-                MainWindowViewModel.Instance.PageContent = new MainPage();
+                IsVisitableAdmin = true;
+                IsVisitableEditDelBut = false;
             }
-            else if(kodAdmin == "0000")
+            else if(KodAdmin == "0000")
             {
-                MainWindowViewModel.Instance.PageContent = new MainPage();
+                IsVisitableAdmin = false;
+                IsVisitableEditDelBut = true;
             }
         }
     }
