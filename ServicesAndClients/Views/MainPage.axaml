@@ -12,28 +12,44 @@
 		<conv:ImageConvert x:Key="ImageConvert"></conv:ImageConvert>
 	</UserControl.Resources>
 
-	<ScrollViewer>
-		<StackPanel Background="White">
-			<StackPanel IsVisible="{Binding IsVisitableAdmin}">
-				<TextBox Watermark="Введите код администратора" Text="{Binding KodAdmin}"></TextBox>
-				<Button Content="Подтвердить" Command="{Binding GetKodAdmin}"></Button>
+
+	<StackPanel Classes="Fon">
+		<StackPanel Classes="Main">
+			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
+			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
+			<StackPanel Classes="FilterDownUp">
+				<!--<ComboBox SelectedIndex="{Binding SelectedSort}" Classes="ChoiceSort">
+					<ComboBoxItem>Без сортировки</ComboBoxItem>
+					<ComboBoxItem>от 0 до 5%</ComboBoxItem>
+					<ComboBoxItem>от 5% до 15%</ComboBoxItem>
+					<ComboBoxItem>от 15% до 30%</ComboBoxItem>
+					<ComboBoxItem>от 30% до 70%</ComboBoxItem>
+					<ComboBoxItem>от 70% до 100%</ComboBoxItem>
+				</ComboBox>-->
+				<StackPanel Classes="FilterDownUp">
+					<RadioButton Content="По возрастанию стоимости" IsChecked="{Binding SortUp}"/>
+					<RadioButton Content="По убыванию стоимости" IsChecked="{Binding SortDown}"/>
+				</StackPanel>
 			</StackPanel>
-			<ListBox ItemsSource="{Binding ServicesList}" Background="White">
+			<TextBlock Classes="head" Text="Список услуг"></TextBlock>
+		</StackPanel>
+		<ScrollViewer Height="650">
+			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Border BorderBrush="Gray" BorderThickness="2" Padding="5 5 5 5" CornerRadius="2" Background="{Binding Color}">
+						<Border Classes="Service" Background="{Binding Color}">
 							<StackPanel Orientation="Horizontal">
 								<StackPanel Background="White" Height="90" Width="90" Margin="0 0 20 0">
 									<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Height="90" Width="90">
-									<Image Source="{Binding MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
-									</Border> 
+										<Image Source="{Binding MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
+									</Border>
 								</StackPanel>
 								<StackPanel>
 									<TextBlock Text="{Binding Title}"></TextBlock>
 									<StackPanel  Orientation="Horizontal">
 										<TextBlock Classes="UpdateCost" Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>
 										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
-									</StackPanel>									
+									</StackPanel>
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
 									<StackPanel Orientation="Horizontal" IsVisible="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).IsVisitableEditDelBut}">
 										<Button Content="Редактировать"></Button>
@@ -43,8 +59,8 @@
 							</StackPanel>
 						</Border>
 					</DataTemplate>
-				</ListBox.ItemTemplate>			
-			</ListBox>		
-			</StackPanel>
-	</ScrollViewer>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+	</StackPanel>
 </UserControl>

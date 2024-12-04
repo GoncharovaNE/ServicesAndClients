@@ -14,7 +14,7 @@ namespace ServicesAndClients.Models
             get
             {
                 bool isVisCostWithDis;
-                if (Discount != null)
+                if (Discount != null && Discount != 0)
                 {
                     return isVisCostWithDis = true;
                 }
@@ -26,7 +26,7 @@ namespace ServicesAndClients.Models
             get
             {
                 int min = DurationInSecond / 60;
-                if (Discount != null)
+                if (Discount != null && Discount != 0)
                 {
                     float dif = Cost * (float)Discount;
                     float cost = Cost - dif;                    
@@ -41,9 +41,9 @@ namespace ServicesAndClients.Models
             get
             {
                 string color;
-                if (Discount != null)
+                if (Discount != null && Discount != 0)
                 {
-                    return color = "#effc73";
+                    return color = "#e7fabf";
                 }
                 return "";
             }
@@ -53,7 +53,7 @@ namespace ServicesAndClients.Models
         {
             get
             {
-                if (Discount != null)
+                if (Discount != null && Discount != 0)
                 {
                     decimal dis = Math.Round((decimal)Discount * 100, 0);
                     return $"* скидка {dis}%";

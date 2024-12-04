@@ -6,8 +6,71 @@
     </Border>
   </Design.PreviewWith>
 
+	<Style Selector="StackPanel.Main">
+		<Setter Property="Height" Value="150"></Setter>
+	</Style>
 
+	<Style Selector="StackPanel.Fon">
+		<Setter Property="Background" Value="White"></Setter>
+	</Style>
+
+	<Style Selector="StackPanel.FilterDownUp">
+		<Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
+		<Setter Property="Margin" Value="10 0 0 0"></Setter>
+	</Style>
+
+	<Style Selector="ListBox">
+		<Setter Property="Background" Value="White"></Setter>
+	</Style>
+
+	<Style Selector="Border.Service">
+		<Setter Property="BorderBrush" Value="Gray"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Padding" Value="5 5 5 5"></Setter>
+		<Setter Property="CornerRadius" Value="2"></Setter>
+	</Style>
+
+	<Style Selector="TextBlock">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+	</Style>
+
+	<Style Selector="TextBlock.head">
+		<Setter Property="FontSize" Value="15"></Setter>
+		<Setter Property="FontWeight" Value="Bold"></Setter>
+		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+	</Style>
+	
 	<Style Selector="TextBlock.UpdateCost">
 		<Setter Property="Margin" Value="0 0 5 0"></Setter>
+	</Style>
+
+	<Style Selector="TextBox">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+	</Style>
+
+	<Style Selector="TextBox.KodAdmin">
+		<Setter Property="Width" Value="250"></Setter>
+		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
+	</Style>
+	
+	<Style Selector="Button.ServBT">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
+		<Setter Property="Background" Value="#04a0ff"></Setter>
+	</Style>
+
+	<Style Selector="Button.ServBT:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#067ec7"></Setter>
+	</Style>
+
+	<Style Selector="RadioButton">
+		<Setter Property="Margin" Value="0 0 10 0"></Setter>
+	</Style>
+
+	<Style Selector="ComboBox.ChoiceSort">
+		<Setter Property="Margin" Value="0 0 10 0"></Setter>
+		<Setter Property="Width" Value="150"></Setter>
 	</Style>
 </Styles>
