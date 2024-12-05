@@ -7,16 +7,28 @@
   </Design.PreviewWith>
 
 	<Style Selector="StackPanel.Main">
-		<Setter Property="Height" Value="150"></Setter>
+		<Setter Property="Height" Value="100"></Setter>
+		<Setter Property="Margin" Value="0 0 0 30"></Setter>
 	</Style>
 
 	<Style Selector="StackPanel.Fon">
 		<Setter Property="Background" Value="White"></Setter>
 	</Style>
 
-	<Style Selector="StackPanel.FilterDownUp">
+	<Style Selector="StackPanel.Filter">
 		<Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
-		<Setter Property="Margin" Value="10 0 0 0"></Setter>
+		<Setter Property="Margin" Value="10 10 0 0"></Setter>
+	</Style>
+
+	<Style Selector="StackPanel.Serv">
+		<Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
+	</Style>
+
+	<Style Selector="StackPanel.ServItem">
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="Margin" Value="0 0 20 0"></Setter>
+		<Setter Property="Height" Value="90"></Setter>
+		<Setter Property="Width" Value="90"></Setter>
 	</Style>
 
 	<Style Selector="ListBox">
@@ -24,10 +36,18 @@
 	</Style>
 
 	<Style Selector="Border.Service">
-		<Setter Property="BorderBrush" Value="Gray"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
 		<Setter Property="Padding" Value="5 5 5 5"></Setter>
 		<Setter Property="CornerRadius" Value="2"></Setter>
+	</Style>
+
+	<Style Selector="Border.ServImage">
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="CornerRadius" Value="2"></Setter>
+		<Setter Property="Height" Value="90"></Setter>
+		<Setter Property="Width" Value="90"></Setter>
 	</Style>
 
 	<Style Selector="TextBlock">
@@ -50,19 +70,33 @@
 
 	<Style Selector="TextBox.KodAdmin">
 		<Setter Property="Width" Value="250"></Setter>
-		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+		<Setter Property="Margin" Value="10 0 0 0"></Setter>
 		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
+	</Style>
+
+	<Style Selector="TextBox.Search">
+		<Setter Property="Width" Value="250"></Setter>
+		<Setter Property="Margin" Value="0 0 10 0"></Setter>
 	</Style>
 	
 	<Style Selector="Button.ServBT">
 		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
-		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+		<Setter Property="Margin" Value="10 0 0 0"></Setter>
 		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
 		<Setter Property="Background" Value="#04a0ff"></Setter>
 	</Style>
 
 	<Style Selector="Button.ServBT:pointerover /template/ ContentPresenter">
 		<Setter Property="Background" Value="#067ec7"></Setter>
+	</Style>
+
+	<Style Selector="Button.RedServ">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+		<Setter Property="FontSize" Value="12"></Setter>
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="0 10 10 0"></Setter>
 	</Style>
 
 	<Style Selector="RadioButton">
@@ -72,5 +106,9 @@
 	<Style Selector="ComboBox.ChoiceSort">
 		<Setter Property="Margin" Value="0 0 10 0"></Setter>
 		<Setter Property="Width" Value="150"></Setter>
+	</Style>
+
+	<Style Selector="ScrollViewer.Scroll">
+		<Setter Property="Height" Value="750"></Setter>
 	</Style>
 </Styles>

@@ -11,6 +11,23 @@ namespace ServicesAndClients.ViewModels
 {
     internal class MainPageVM: ViewModelBase
     {
+        #region Переход по страницам
+
+        public void ToPageAddServ()
+        {
+            MainWindowViewModel.Instance.PageContent = new PageAddEditServ();
+        }
+
+        public void ToPageEditServ(int id)
+        {
+            MainWindowViewModel.Instance.PageContent = new PageAddEditServ(id);
+        }
+
+
+        #endregion
+
+        #region Элементы для главной страницы
+
         List<Service> servicesList;
 
         public List<Service> ServicesList { get => servicesList; set => this.RaiseAndSetIfChanged(ref servicesList, value); }
@@ -44,7 +61,21 @@ namespace ServicesAndClients.ViewModels
             }
         }
 
+        #endregion
+
         #region Сортировка,поиск и фильтрация
+
+        int _countItemsList = MainWindowViewModel.myConnection.Services.ToList().Count;
+
+        public int CountItemsList { get => _countItemsList; set => this.RaiseAndSetIfChanged(ref _countItemsList, value); }
+
+        int _countItemsDB = MainWindowViewModel.myConnection.Services.ToList().Count;
+
+        public int CountItemsDB { get => _countItemsDB; set => this.RaiseAndSetIfChanged(ref _countItemsDB, value); }
+
+        string _search;
+
+        public string Search { get => _search; set { _search = this.RaiseAndSetIfChanged(ref _search, value); filtersService(); } }
 
         int _selectedSort = 0;
         public int SelectedSort { get => _selectedSort; set { _selectedSort = value; filtersService(); } }        
@@ -52,6 +83,12 @@ namespace ServicesAndClients.ViewModels
         public void filtersService()
         {
             ServicesList = MainWindowViewModel.myConnection.Services.ToList();
+
+            if (!string.IsNullOrEmpty(_search))
+            {
+                ServicesList = ServicesList.Where(x => (x.Title + " " + x.Description).ToLower().Contains(_search.ToLower())).ToList();
+                CountItemsList = ServicesList.Count;
+            }
 
             float dis1 = 0.05F;
             float dis2 = 0.15F;
@@ -62,24 +99,35 @@ namespace ServicesAndClients.ViewModels
             {
                 case 0:
                     ServicesList = ServicesList.ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 1:
-                    ServicesList = ServicesList.OrderBy(x => x.Cost).ToList();                                    
+                    ServicesList = ServicesList.OrderBy(x => x.Cost).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 2:
                     ServicesList = ServicesList.OrderByDescending(x => x.Cost).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 3:
-                    ServicesList = ServicesList.Where(x => x.Discount >= dis1 && x.Discount < dis2).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    ServicesList = ServicesList.Where(x => x.Discount < dis1).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 4:
-                    ServicesList = ServicesList.Where(x => x.Discount >= dis2 && x.Discount < dis3).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    ServicesList = ServicesList.Where(x => x.Discount >= dis1 && x.Discount < dis2).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 5:
-                    ServicesList = ServicesList.Where(x => x.Discount >= dis3 && x.Discount < dis4).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    ServicesList = ServicesList.Where(x => x.Discount >= dis2 && x.Discount < dis3).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
                 case 6:
-                    ServicesList = ServicesList.Where(x => x.Discount >= dis4 && x.Discount < 1F).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    ServicesList = ServicesList.Where(x => x.Discount >= dis3 && x.Discount < dis4).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    CountItemsList = ServicesList.Count;
+                    break;
+                case 7:
+                    ServicesList = ServicesList.Where(x => x.Discount > dis4).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    CountItemsList = ServicesList.Count;
                     break;
             }
         }

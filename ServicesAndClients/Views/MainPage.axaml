@@ -14,44 +14,43 @@
 
 
 	<StackPanel Classes="Fon">
-		<StackPanel Classes="Main">
+		<StackPanel Classes="Filter">
+			<TextBox Classes="Search" Watermark="Поиск" Text="{Binding Search}"></TextBox>
+			<ComboBox SelectedIndex="{Binding SelectedSort}" Classes="ChoiceSort">
+				<ComboBoxItem>Без сортировки</ComboBoxItem>
+				<ComboBoxItem>По возрастанию стоимости</ComboBoxItem>
+				<ComboBoxItem>По убыванию стоимости</ComboBoxItem>
+				<ComboBoxItem>от 0 до 5%</ComboBoxItem>
+				<ComboBoxItem>от 5% до 15%</ComboBoxItem>
+				<ComboBoxItem>от 15% до 30%</ComboBoxItem>
+				<ComboBoxItem>от 30% до 70%</ComboBoxItem>
+				<ComboBoxItem>от 70% до 100%</ComboBoxItem>
+			</ComboBox>
 			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
 			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
-			<StackPanel Classes="FilterDownUp">
-				<ComboBox SelectedIndex="{Binding SelectedSort}" Classes="ChoiceSort">
-					<ComboBoxItem>Без сортировки</ComboBoxItem>
-					<ComboBoxItem>По возрастанию стоимости</ComboBoxItem>
-					<ComboBoxItem>По убыванию стоимости</ComboBoxItem>
-					<ComboBoxItem>от 0 до 5%</ComboBoxItem>
-					<ComboBoxItem>от 5% до 15%</ComboBoxItem>
-					<ComboBoxItem>от 15% до 30%</ComboBoxItem>
-					<ComboBoxItem>от 30% до 70%</ComboBoxItem>
-					<ComboBoxItem>от 70% до 100%</ComboBoxItem>
-				</ComboBox>
-			</StackPanel>
-			<TextBlock Classes="head" Text="Список услуг"></TextBlock>
 		</StackPanel>
-		<ScrollViewer Height="650">
+		<TextBlock Classes="head" Text="Список услуг"></TextBlock>
+		<ScrollViewer Classes="Scroll">
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<Border Classes="Service" Background="{Binding Color}">
-							<StackPanel Orientation="Horizontal">
-								<StackPanel Background="White" Height="90" Width="90" Margin="0 0 20 0">
-									<Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Height="90" Width="90">
+							<StackPanel Classes="Serv">
+								<StackPanel Classes="ServItem">
+									<Border Classes="ServImage">
 										<Image Source="{Binding MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
 									</Border>
 								</StackPanel>
 								<StackPanel>
 									<TextBlock Text="{Binding Title}"></TextBlock>
-									<StackPanel  Orientation="Horizontal">
+									<StackPanel Classes="Serv">
 										<TextBlock Classes="UpdateCost" Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>
 										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
 									</StackPanel>
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
-									<StackPanel Orientation="Horizontal" IsVisible="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).IsVisitableEditDelBut}">
-										<Button Content="Редактировать"></Button>
-										<Button Content="Удалить"></Button>
+									<StackPanel Classes="Serv">
+										<Button Classes="RedServ" Content="Редактировать"></Button>
+										<Button Classes="RedServ" Content="Удалить"></Button>
 									</StackPanel>
 								</StackPanel>
 							</StackPanel>
@@ -60,5 +59,13 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</ScrollViewer>
+		<TextBlock Classes="head">
+			<TextBlock.Text>
+				<MultiBinding StringFormat="{} {0} из {1}">
+					<Binding Path="CountItemsList"/>
+					<Binding Path="CountItemsDB"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
 	</StackPanel>
 </UserControl>
