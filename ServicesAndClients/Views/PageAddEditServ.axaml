@@ -6,4 +6,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ServicesAndClients.PageAddEditServ"
 			 x:DataType="vm:PageAddEditServVM">
+
+	<StackPanel Classes="Fon">
+		<TextBlock Classes="head" Text="{Binding HeadPage}"></TextBlock>
+		<Button Command="{Binding ToMainPage}" Classes="AddServ" Content="Назад"></Button>
+	</StackPanel>	
 </UserControl>

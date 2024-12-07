@@ -75,7 +75,7 @@
 	</Style>
 
 	<Style Selector="TextBox.Search">
-		<Setter Property="Width" Value="250"></Setter>
+		<Setter Property="Width" Value="350"></Setter>
 		<Setter Property="Margin" Value="0 0 10 0"></Setter>
 	</Style>
 	
@@ -99,13 +99,32 @@
 		<Setter Property="Margin" Value="0 10 10 0"></Setter>
 	</Style>
 
+	<Style Selector="Button.RedServ:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#04a0ff"></Setter>
+	</Style>
+
+	<Style Selector="Button.AddServ">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+		<Setter Property="FontSize" Value="12"></Setter>
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="10 0 0 0"></Setter>
+	</Style>
+
+	<Style Selector="Button.AddServ:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#04a0ff"></Setter>
+	</Style>
+
 	<Style Selector="RadioButton">
-		<Setter Property="Margin" Value="0 0 10 0"></Setter>
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
 	</Style>
 
 	<Style Selector="ComboBox.ChoiceSort">
 		<Setter Property="Margin" Value="0 0 10 0"></Setter>
-		<Setter Property="Width" Value="150"></Setter>
+		<Setter Property="Width" Value="250"></Setter>
 	</Style>
 
 	<Style Selector="ScrollViewer.Scroll">

@@ -14,6 +14,7 @@
 
 
 	<StackPanel Classes="Fon">
+		<TextBlock Classes="head" Text="Главная страница"></TextBlock>
 		<StackPanel Classes="Filter">
 			<TextBox Classes="Search" Watermark="Поиск" Text="{Binding Search}"></TextBox>
 			<ComboBox SelectedIndex="{Binding SelectedSort}" Classes="ChoiceSort">
@@ -28,8 +29,9 @@
 			</ComboBox>
 			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
 			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
-		</StackPanel>
+		</StackPanel>	
 		<TextBlock Classes="head" Text="Список услуг"></TextBlock>
+		<Button IsVisible="{Binding IsVisitableEditDelBut}" Command="{Binding ToPageAddServ}" Classes="AddServ" Content="Добавить услугу"></Button>
 		<ScrollViewer Classes="Scroll">
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
@@ -48,9 +50,9 @@
 										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
 									</StackPanel>
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
-									<StackPanel Classes="Serv">
-										<Button Classes="RedServ" Content="Редактировать"></Button>
-										<Button Classes="RedServ" Content="Удалить"></Button>
+									<StackPanel Classes="Serv" IsVisible="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).IsVisitableEditDelBut}">
+										<Button Command="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).ToPageEditServ}" CommandParameter="{Binding Id}" Classes="RedServ" Content="Редактировать"></Button>
+										<Button Command="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).DeleteService}" CommandParameter="{Binding Id}" Classes="RedServ" Content="Удалить"></Button>
 									</StackPanel>
 								</StackPanel>
 							</StackPanel>
