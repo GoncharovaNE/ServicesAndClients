@@ -5,10 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ServicesAndClients.PageAddEditServ"
-			 x:DataType="vm:PageAddEditServVM">
+			 x:DataType="vm:PageAddEditServVM"
+			 xmlns:conv="using:ServicesAndClients.Converters">
+
+	<UserControl.Resources>
+		<conv:ImageConvert x:Key="ImageConvert"></conv:ImageConvert>
+	</UserControl.Resources>
 
 	<StackPanel Classes="Fon">
 		<TextBlock Classes="head" Text="{Binding HeadPage}"></TextBlock>
-		<Button Command="{Binding ToMainPage}" Classes="AddServ" Content="Назад"></Button>
+		<StackPanel Classes="Serv">
+			<Button Command="{Binding ToMainPage}" Classes="AddServ" Content="Назад"></Button>
+			<Button Command="{Binding SaveAddEditServ}" Classes="AddServ" Content="{Binding NameBT}"></Button>
+		</StackPanel>		
+		<Border Margin="6 10 0 20" Classes="ServImage">
+			<Image Source="{Binding NewService.MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
+		</Border>
+		<Button HorizontalAlignment="Center" Command="{Binding AddOnePhoto}" Classes="AddServ" Content="Добавить фото"></Button>
+		<TextBox Classes="FieldsServ" Text="{Binding NewService.Id}" IsVisible="{Binding IsVisibleBT}" IsEnabled="{Binding IsEnableBT}"></TextBox>
+		<TextBox Classes="FieldsServ" Watermark="Введите название услуги" Text="{Binding NewService.Title}"></TextBox>
+		<TextBox Classes="FieldsServ" Watermark="Введите стоимость услуги" Text="{Binding Cost}"></TextBox>
+		<TextBox Classes="FieldsServ" Watermark="Введите длительность услуги (в минутах)" Text="{Binding DurationInMin}"></TextBox>
+		<TextBox Classes="FieldsServ" Watermark="Введите описание услуги" Text="{Binding NewService.Description}"></TextBox>
+		<TextBox Classes="FieldsServ" Watermark="Введите скидку услуги (в процентах)" Text="{Binding Discount}"></TextBox>
 	</StackPanel>	
 </UserControl>

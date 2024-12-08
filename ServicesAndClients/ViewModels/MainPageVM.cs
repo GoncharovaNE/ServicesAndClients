@@ -37,7 +37,7 @@ namespace ServicesAndClients.ViewModels
         public MainPageVM()
         {
             ServicesList = MainWindowViewModel.myConnection.Services.Include(x => x.ClientServices).ToList();
-        }
+        }        
 
         bool isVisitableEditDelBut = false;
         
@@ -49,12 +49,14 @@ namespace ServicesAndClients.ViewModels
         public bool IsVisitableEditDelBut { get => isVisitableEditDelBut; set => this.RaiseAndSetIfChanged(ref isVisitableEditDelBut, value); }
         public bool IsVisitableAdmin { get => isVisitableAdmin; set => this.RaiseAndSetIfChanged(ref isVisitableAdmin, value); }
 
-        public void GetKodAdmin()
+        public async void GetKodAdmin()
         {
             if (KodAdmin == null || KodAdmin != "0000")
             {
                 IsVisitableAdmin = true;
                 IsVisitableEditDelBut = false;
+                string Messege = "Неверный код администратора! Доступ ограничен.";
+                ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением о некорректных данных!", Messege, ButtonEnum.Ok).ShowAsync();
             }
             else if(KodAdmin == "0000")
             {
@@ -76,11 +78,17 @@ namespace ServicesAndClients.ViewModels
         public int CountItemsDB { get => _countItemsDB; set => this.RaiseAndSetIfChanged(ref _countItemsDB, value); }
 
         string _search;
-
         public string Search { get => _search; set { _search = this.RaiseAndSetIfChanged(ref _search, value); filtersService(); } }
 
         int _selectedSort = 0;
         public int SelectedSort { get => _selectedSort; set { _selectedSort = value; filtersService(); } }
+
+        private bool _noResults;
+        public bool NoResults
+        {
+            get => _noResults;
+            set => this.RaiseAndSetIfChanged(ref _noResults, value);
+        }
 
         public void filtersService()
         {
@@ -89,7 +97,7 @@ namespace ServicesAndClients.ViewModels
             if (!string.IsNullOrEmpty(_search))
             {
                 ServicesList = ServicesList.Where(x => x.Title.ToLower().Contains(_search.ToLower()) ||
-                x.Description.ToLower().Contains(_search.ToLower())).ToList();
+                x.Description.ToLower().Contains(_search.ToLower())).ToList();                
                 CountItemsList = ServicesList.Count;
             }            
 
@@ -129,10 +137,12 @@ namespace ServicesAndClients.ViewModels
                     CountItemsList = ServicesList.Count;
                     break;
                 case 7:
-                    ServicesList = ServicesList.Where(x => x.Discount > dis4).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
+                    ServicesList = ServicesList.Where(x => x.Discount >= dis4).OrderBy(x => x.Discount).ThenBy(x => x.Title).ToList();
                     CountItemsList = ServicesList.Count;
                     break;
             }
+
+            NoResults = ServicesList.Count == 0;
         }
 
         #endregion

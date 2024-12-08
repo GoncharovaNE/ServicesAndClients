@@ -29,10 +29,11 @@
 			</ComboBox>
 			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
 			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
-		</StackPanel>	
+		</StackPanel>
 		<TextBlock Classes="head" Text="Список услуг"></TextBlock>
 		<Button IsVisible="{Binding IsVisitableEditDelBut}" Command="{Binding ToPageAddServ}" Classes="AddServ" Content="Добавить услугу"></Button>
-		<ScrollViewer Classes="Scroll">
+		<TextBlock Classes="InfoSearch" Text="Результаты не найдены" IsVisible="{Binding NoResults}"/>
+		<ScrollViewer Classes="Scroll">			
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
