@@ -11,10 +11,6 @@
 		<Setter Property="Margin" Value="0 0 0 30"></Setter>
 	</Style>
 
-	<Style Selector="StackPanel.Fon">
-		<Setter Property="Background" Value="White"></Setter>
-	</Style>
-
 	<Style Selector="StackPanel.Filter">
 		<Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
 		<Setter Property="Margin" Value="10 10 0 0"></Setter>
@@ -26,9 +22,10 @@
 
 	<Style Selector="StackPanel.ServItem">
 		<Setter Property="Background" Value="White"></Setter>
-		<Setter Property="Margin" Value="0 0 20 0"></Setter>
-		<Setter Property="Height" Value="90"></Setter>
-		<Setter Property="Width" Value="90"></Setter>
+		<Setter Property="Margin" Value="0 0 20 5"></Setter>
+		<Setter Property="Height" Value="97"></Setter>
+		<Setter Property="Width" Value="97"></Setter>
+		<Setter Property="Border.CornerRadius" Value="2"></Setter>
 	</Style>
 
 	<Style Selector="ListBox">
@@ -38,7 +35,7 @@
 	<Style Selector="Border.Service">
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
-		<Setter Property="Padding" Value="5 5 5 5"></Setter>
+		<Setter Property="Padding" Value="10 10 10 10 "></Setter>
 		<Setter Property="CornerRadius" Value="2"></Setter>
 	</Style>
 
@@ -46,8 +43,17 @@
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
 		<Setter Property="CornerRadius" Value="2"></Setter>
-		<Setter Property="Height" Value="90"></Setter>
-		<Setter Property="Width" Value="90"></Setter>
+		<Setter Property="Height" Value="100"></Setter>
+		<Setter Property="Width" Value="100"></Setter>
+		<Setter Property="HorizontalAlignment" Value="Center"></Setter>
+	</Style>
+
+	<Style Selector="Border.ServImageEdit">
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="CornerRadius" Value="2"></Setter>
+		<Setter Property="Height" Value="100"></Setter>
+		<Setter Property="Width" Value="100"></Setter>
 		<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 	</Style>
 
@@ -59,6 +65,12 @@
 		<Setter Property="FontSize" Value="15"></Setter>
 		<Setter Property="FontWeight" Value="Bold"></Setter>
 		<Setter Property="Margin" Value="10 10 0 10"></Setter>
+	</Style>
+
+	<Style Selector="TextBlock.headServ">
+		<Setter Property="FontSize" Value="15"></Setter>
+		<Setter Property="FontWeight" Value="Bold"></Setter>
+		<Setter Property="Margin" Value="10 10 0 0"></Setter>
 	</Style>
 
 	<Style Selector="TextBlock.InfoSearch">
@@ -82,11 +94,12 @@
 		<Setter Property="Width" Value="250"></Setter>
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="0 0 10 0"></Setter>
 	</Style>
 
 	<Style Selector="TextBox.FieldsServ">
 		<Setter Property="Width" Value="450"></Setter>
-		<Setter Property="Margin" Value="10 10 0 0"></Setter>
+		<Setter Property="Margin" Value="0 10 0 0"></Setter>
 		<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
@@ -101,7 +114,6 @@
 	
 	<Style Selector="Button.ServBT">
 		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
-		<Setter Property="Margin" Value="10 0 0 0"></Setter>
 		<Setter Property="HorizontalAlignment" Value="Left"></Setter>
 		<Setter Property="Background" Value="#04a0ff"></Setter>
 	</Style>
@@ -129,10 +141,36 @@
 		<Setter Property="Background" Value="White"></Setter>
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
-		<Setter Property="Margin" Value="10 0 0 10"></Setter>
+		<Setter Property="Margin" Value="0 0 10 0"></Setter>
 	</Style>
 
 	<Style Selector="Button.AddServ:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#04a0ff"></Setter>
+	</Style>
+
+	<Style Selector="Button.BTBack">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+		<Setter Property="FontSize" Value="12"></Setter>
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="10 0 0 0"></Setter>
+	</Style>
+
+	<Style Selector="Button.BTBack:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="#04a0ff"></Setter>
+	</Style>
+
+	<Style Selector="Button.BTAddImage">
+		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+		<Setter Property="FontSize" Value="12"></Setter>
+		<Setter Property="Background" Value="White"></Setter>
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="0 0 0 0"></Setter>
+	</Style>
+
+	<Style Selector="Button.BTAddImage:pointerover /template/ ContentPresenter">
 		<Setter Property="Background" Value="#04a0ff"></Setter>
 	</Style>
 

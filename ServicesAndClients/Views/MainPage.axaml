@@ -12,8 +12,8 @@
 		<conv:ImageConvert x:Key="ImageConvert"></conv:ImageConvert>
 	</UserControl.Resources>
 
-
-	<StackPanel Classes="Fon">
+	<Grid RowDefinitions="12*,65*,7*">
+	<StackPanel Grid.Row="0">
 		<TextBlock Classes="head" Text="Главная страница"></TextBlock>
 		<StackPanel Classes="Filter">
 			<TextBox Classes="Search" Watermark="Поиск" Text="{Binding Search}"></TextBox>
@@ -21,19 +21,24 @@
 				<ComboBoxItem>Без сортировки</ComboBoxItem>
 				<ComboBoxItem>По возрастанию стоимости</ComboBoxItem>
 				<ComboBoxItem>По убыванию стоимости</ComboBoxItem>
+			</ComboBox>
+			<ComboBox SelectedIndex="{Binding SelectedFilter}" Classes="ChoiceSort">
+				<ComboBoxItem>Без фильтрации</ComboBoxItem>
 				<ComboBoxItem>от 0 до 5%</ComboBoxItem>
 				<ComboBoxItem>от 5% до 15%</ComboBoxItem>
 				<ComboBoxItem>от 15% до 30%</ComboBoxItem>
 				<ComboBoxItem>от 30% до 70%</ComboBoxItem>
 				<ComboBoxItem>от 70% до 100%</ComboBoxItem>
 			</ComboBox>
+			<Button IsVisible="{Binding IsVisitableEditDelBut}" Command="{Binding ToPageAddServ}" Classes="AddServ" Content="Добавить услугу"></Button>
 			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
 			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
+			<Button Classes="ServBT" Content="Вернуться в клиентский режим" Command="{Binding ClienеMode}" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
 		</StackPanel>
-		<TextBlock Classes="head" Text="Список услуг"></TextBlock>
-		<Button IsVisible="{Binding IsVisitableEditDelBut}" Command="{Binding ToPageAddServ}" Classes="AddServ" Content="Добавить услугу"></Button>
+		<TextBlock Classes="headServ" Text="Список услуг"></TextBlock>
 		<TextBlock Classes="InfoSearch" Text="Результаты не найдены" IsVisible="{Binding NoResults}"/>
-		<ScrollViewer Classes="Scroll">			
+	</StackPanel>
+		<ScrollViewer Grid.Row="1">			
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -52,6 +57,7 @@
 									</StackPanel>
 									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>
 									<StackPanel Classes="Serv" IsVisible="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).IsVisitableEditDelBut}">
+										<Button Command="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).ToPageAddEntry}" CommandParameter="{Binding Id}" Classes="RedServ" Content="Добавить запись"></Button>
 										<Button Command="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).ToPageEditServ}" CommandParameter="{Binding Id}" Classes="RedServ" Content="Редактировать"></Button>
 										<Button Command="{Binding $parent[UserControl].((vm:MainPageVM)DataContext).DeleteService}" CommandParameter="{Binding Id}" Classes="RedServ" Content="Удалить"></Button>
 									</StackPanel>
@@ -62,6 +68,7 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</ScrollViewer>
+		<StackPanel Grid.Row="2">
 		<TextBlock Classes="head">
 			<TextBlock.Text>
 				<MultiBinding StringFormat="{} {0} из {1}">
@@ -71,4 +78,5 @@
 			</TextBlock.Text>
 		</TextBlock>
 	</StackPanel>
+	</Grid>
 </UserControl>

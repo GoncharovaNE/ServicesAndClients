@@ -12,4 +12,10 @@ public partial class MainPage : UserControl
         InitializeComponent();
         DataContext = new MainPageVM();
     }
+
+    public MainPage(bool Admin)
+    {
+        InitializeComponent();
+        DataContext = new MainPageVM(Admin);
+    }
 }

@@ -23,13 +23,16 @@ namespace ServicesAndClients.ViewModels
     {
         #region Переход по страницам и их заголовки
 
+        bool _isAdmin = true;
+        public bool IsAdmin { get => _isAdmin; set => _isAdmin = value; }
+
         string _headPage;
 
         public string HeadPage { get => _headPage; set => this.RaiseAndSetIfChanged(ref _headPage, value); }
 
         public void ToMainPage()
         {
-            MainWindowViewModel.Instance.PageContent = new MainPage();
+            MainWindowViewModel.Instance.PageContent = new MainPage(IsAdmin);
         }
 
         #endregion
@@ -38,9 +41,6 @@ namespace ServicesAndClients.ViewModels
 
         Service? _newService;
         public Service? NewService { get => _newService; set => this.RaiseAndSetIfChanged(ref _newService, value); }
-
-        ServicePhoto? _newServicePhoto;
-        public ServicePhoto? NewServicePhoto { get => _newServicePhoto; set => this.RaiseAndSetIfChanged(ref _newServicePhoto, value); }       
 
         string _nameBT;
         public string NameBT { get => _nameBT; set => this.RaiseAndSetIfChanged(ref _nameBT, value); }
@@ -53,10 +53,6 @@ namespace ServicesAndClients.ViewModels
 
         List<Service>? _servicesList;
         public List<Service>? ServiceList { get => _servicesList; set => this.RaiseAndSetIfChanged(ref _servicesList, value); }
-
-        List<ServicePhoto>? _servicePhotosTable;
-
-        public List<ServicePhoto>? ServicePhotosTable { get => _servicePhotosTable; set => this.RaiseAndSetIfChanged(ref _servicePhotosTable, value); }
 
         string _cost;
         public string Cost { get => _cost; set => this.RaiseAndSetIfChanged(ref _cost, value); }
@@ -77,8 +73,6 @@ namespace ServicesAndClients.ViewModels
             _newService = new Service() ;           
 
             ServiceList = MainWindowViewModel.myConnection.Services.ToList();
-
-            //_newServicePhoto = new ServicePhoto() { Service = new Service() };
         }
         public PageAddEditServVM(int id)
         {
@@ -94,8 +88,6 @@ namespace ServicesAndClients.ViewModels
             DurationInMin = (_newService.DurationInSecond/60).ToString();
 
             ServiceList = MainWindowViewModel.myConnection.Services.ToList();
-
-            //ServicePhotosTable = NewService.ServicePhotos.ToList();
         }
 
         bool flagCost = false;
@@ -169,7 +161,7 @@ namespace ServicesAndClients.ViewModels
                         else
                         {
                             MainWindowViewModel.myConnection.SaveChanges();
-                            MainWindowViewModel.Instance.PageContent = new MainPage();
+                            MainWindowViewModel.Instance.PageContent = new MainPage(IsAdmin);
                             if (NameBT == "Добавить услугу")
                             {
                                 string Messege = "Услуга добавлена!";
