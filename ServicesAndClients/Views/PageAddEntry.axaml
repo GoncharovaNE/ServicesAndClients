@@ -5,18 +5,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ServicesAndClients.PageAddEntry"
-			 x:DataType="vm:PageAddEntryVM">
-	<Grid RowDefinitions="12*,65*,7*">
+			 x:DataType="vm:PageAddEntryVM"
+			 xmlns:conv="using:ServicesAndClients.Converters">
+
+	<UserControl.Resources>
+		<conv:DateOnlyConverter x:Key="DateOnlyConverter"></conv:DateOnlyConverter>
+		<conv:TimeOnlyConverter x:Key="TimeOnlyConverter"></conv:TimeOnlyConverter>
+	</UserControl.Resources>
+	
+	<Grid RowDefinitions="15*,50*">
 		<StackPanel Grid.Row="0">
 			<TextBlock Classes="head" Text="{Binding HeadPage}"></TextBlock>
 			<StackPanel Classes="Serv">
 				<Button Command="{Binding ToMainPage}" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Назад"></Button>
-				<Button Command="" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Подтвердить запись"></Button>
+				<Button Command="" CommandParameter="" Classes="BTBack" Content="Подтвердить запись"></Button>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Row="1">
-			<TextBox Classes="FieldsServ" Text="{Binding Entry.Service.Title}"></TextBox>
-			<TextBox Classes="FieldsServ" Text=""></TextBox>
+			<TextBox IsReadOnly="True" Classes="FieldsServ" Text="{Binding ServiceToEntry.Title}"></TextBox>
+			<TextBox IsReadOnly="True" Classes="FieldsServ" Text="{Binding DurationInMin}"></TextBox>
+			<ComboBox Classes="ChoiceClient" ItemsSource="{Binding ClientList}" SelectedValue="{Binding SelectedClient}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding fio}"></TextBlock>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<DatePicker SelectedDate="{Binding DateOnly, Converter={StaticResource DateOnlyConverter}}"></DatePicker>
+			<TimePicker SelectedTime="{Binding TimeStart, Converter={StaticResource TimeOnlyConverter}}}"></TimePicker>
+			<TimePicker IsHitTestVisible="False" SelectedTime="{Binding TimeEnd, Converter={StaticResource TimeOnlyConverter}}}"></TimePicker>
 		</StackPanel>
 	</Grid>
 </UserControl>

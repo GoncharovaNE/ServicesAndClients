@@ -7,6 +7,13 @@ namespace ServicesAndClients;
 
 public partial class PageAddEntry : UserControl
 {
+
+    public PageAddEntry()
+    {
+        InitializeComponent();
+        DataContext = new PageAddEntryVM();
+    }
+
     public PageAddEntry(int id)
     {
         InitializeComponent();
