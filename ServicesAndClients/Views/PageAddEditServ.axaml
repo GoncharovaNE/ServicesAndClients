@@ -24,7 +24,6 @@
 			<Border Margin="0 10 0 20" Classes="ServImageEdit">
 				<Image Source="{Binding NewService.MainImagePath ,Converter={StaticResource ImageConvert}}"></Image>
 			</Border>
-			<Button HorizontalAlignment="Center" Command="{Binding AddOnePhoto}" Classes="BTAddImage" Content="Добавить фото"></Button>
 			<TextBox Classes="FieldsServ" Text="{Binding NewService.Id}" IsVisible="{Binding IsVisibleBT}" IsEnabled="{Binding IsEnableBT}"></TextBox>
 			<TextBox Classes="FieldsServ" Watermark="Введите название услуги" Text="{Binding NewService.Title}"></TextBox>
 			<TextBox Classes="FieldsServ" Watermark="Введите стоимость услуги" Text="{Binding Cost}"></TextBox>

@@ -18,10 +18,10 @@
 			<TextBlock Classes="head" Text="{Binding HeadPage}"></TextBlock>
 			<StackPanel Classes="Serv">
 				<Button Command="{Binding ToMainPage}" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Назад"></Button>
-				<Button Command="" CommandParameter="" Classes="BTBack" Content="Подтвердить запись"></Button>
+				<Button Command="{Binding SaveAddEntry}" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Подтвердить запись"></Button>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel Grid.Row="1">
+		<StackPanel Grid.Row="1" HorizontalAlignment="Center">
 			<TextBox IsReadOnly="True" Classes="FieldsServ" Text="{Binding ServiceToEntry.Title}"></TextBox>
 			<TextBox IsReadOnly="True" Classes="FieldsServ" Text="{Binding DurationInMin}"></TextBox>
 			<ComboBox Classes="ChoiceClient" ItemsSource="{Binding ClientList}" SelectedValue="{Binding SelectedClient}">
@@ -31,8 +31,11 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
+			<TextBlock Classes="TBPageAddEntry" Text="Выберите дату оказания услуги:"></TextBlock>
 			<DatePicker SelectedDate="{Binding DateOnly, Converter={StaticResource DateOnlyConverter}}"></DatePicker>
+			<TextBlock Classes="TBPageAddEntry" Text="Выберите время начала оказания услуги:"></TextBlock>
 			<TimePicker SelectedTime="{Binding TimeStart, Converter={StaticResource TimeOnlyConverter}}}"></TimePicker>
+			<TextBlock Classes="TBPageAddEntry" Text="Время окончания услуги:"></TextBlock>
 			<TimePicker IsHitTestVisible="False" SelectedTime="{Binding TimeEnd, Converter={StaticResource TimeOnlyConverter}}}"></TimePicker>
 		</StackPanel>
 	</Grid>

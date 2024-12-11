@@ -61,6 +61,11 @@
 		<Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
 	</Style>
 
+	<Style Selector="TextBlock.TBPageAddEntry">
+		<Setter Property="FontSize" Value="15"></Setter>
+		<Setter Property="Margin" Value="0 10 0 0"></Setter>
+	</Style>
+
 	<Style Selector="TextBlock.head">
 		<Setter Property="FontSize" Value="15"></Setter>
 		<Setter Property="FontWeight" Value="Bold"></Setter>
@@ -184,14 +189,27 @@
 
 	<Style Selector="ComboBox.ChoiceClient">
 		<Setter Property="Margin" Value="0 10 0 0"></Setter>
-		<Setter Property="Width" Value="250"></Setter>
+		<Setter Property="Width" Value="450"></Setter>
 		<Setter Property="Height" Value="35"></Setter>
 		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
 		<Setter Property="BorderThickness" Value="2"></Setter>
-		<Setter Property="HorizontalAlignment" Value="Center"></Setter>
 	</Style>
 
 	<Style Selector="ScrollViewer.Scroll">
 		<Setter Property="Height" Value="600"></Setter>
+	</Style>
+
+	<Style Selector="DatePicker">
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="0 10 0 0"></Setter>
+		<Setter Property="Width" Value="450"></Setter>
+	</Style>
+
+	<Style Selector="TimePicker">
+		<Setter Property="BorderBrush" Value="#04a0ff"></Setter>
+		<Setter Property="BorderThickness" Value="2"></Setter>
+		<Setter Property="Margin" Value="0 10 0 0"></Setter>
+		<Setter Property="Width" Value="450"></Setter>
 	</Style>
 </Styles>

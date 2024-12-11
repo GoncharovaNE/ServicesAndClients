@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using MsBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using ReactiveUI;
 using ServicesAndClients.Models;
 using System;
 using System.Collections.Generic;
@@ -37,7 +39,7 @@ namespace ServicesAndClients.ViewModels
         {
             get
             {
-                _durationInMin = _serviceToEntry.DurationInSecond / 60 + " минут";
+                _durationInMin = _serviceToEntry.DurationInSecond / 60 + " минут - продолжительность услуги";
                 return _durationInMin;
             }
             set => this.RaiseAndSetIfChanged(ref _durationInMin, value);
@@ -62,10 +64,22 @@ namespace ServicesAndClients.ViewModels
         public DateOnly? DateOnly { get => _dateOnly; set => this.RaiseAndSetIfChanged(ref _dateOnly, value); }
 
         TimeOnly? _timeStart;
-        public TimeOnly? TimeStart { get => _timeStart; set => this.RaiseAndSetIfChanged(ref _timeStart, value); }
+        public TimeOnly? TimeStart { get => _timeStart; set { this.RaiseAndSetIfChanged(ref _timeStart, value); getTimeEnd(); } }
 
         TimeOnly? _timeEnd;
         public TimeOnly? TimeEnd { get => _timeEnd; set => this.RaiseAndSetIfChanged(ref _timeEnd, value); }
+
+        public void getTimeEnd()
+        {
+            if (TimeStart.HasValue)
+            {
+                TimeEnd = TimeStart.Value.Add(TimeSpan.FromSeconds(ServiceToEntry.DurationInSecond));
+            }
+            else
+            {
+                TimeEnd = null;
+            }
+        }
 
         public PageAddEntryVM()
         {
@@ -78,5 +92,45 @@ namespace ServicesAndClients.ViewModels
             _entry = new ClientService() { };
         }
 
+        public async void SaveAddEntry()
+        {
+            try
+            {
+                if (DateOnly.HasValue && TimeStart.HasValue && _selectedClient != null)
+                {
+                    Entry.StartTime = new DateTime(_dateOnly.Value.Year, _dateOnly.Value.Month, _dateOnly.Value.Day, 
+                        _timeStart.Value.Hour, _timeStart.Value.Minute, _timeStart.Value.Second);
+                    Entry.ClientId = SelectedClient.Id;
+                    Entry.ServiceId = ServiceToEntry.Id;
+                    MainWindowViewModel.myConnection.ClientServices.Add(Entry);
+                    MainWindowViewModel.myConnection.SaveChanges();
+                    string Messege = "Запись на услугу добавлена!";
+                    ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением о добавлении!", Messege, ButtonEnum.Ok).ShowAsync();
+                    MainWindowViewModel.Instance.PageContent = new MainPage(IsAdmin);
+                }
+                else
+                {
+                    if (_selectedClient == null)
+                    {
+                        string Messege = "Не выбран клиент для записи на услуги!";
+                        ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением о незаполненных полях!", Messege, ButtonEnum.Ok).ShowAsync();
+                    }
+                    if (!DateOnly.HasValue)
+                    {
+                        string Messege = "Не выбрана дата оказания услуги!";
+                        ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением о незаполненных полях!", Messege, ButtonEnum.Ok).ShowAsync();
+                    }
+                    if (!TimeStart.HasValue)
+                    {
+                        string Messege = "Не выбрано время начала оказания услуги!";
+                        ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением о незаполненных полях!", Messege, ButtonEnum.Ok).ShowAsync();
+                    }                    
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBoxManager.GetMessageBoxStandard("Внимание", ex.Message + "\n" + ex.StackTrace, MsBox.Avalonia.Enums.ButtonEnum.Ok).ShowAsync();
+            }
+        }
     }
 }

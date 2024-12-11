@@ -90,6 +90,10 @@ namespace ServicesAndClients.ViewModels
             ServiceList = MainWindowViewModel.myConnection.Services.ToList();
         }
 
+        #endregion
+
+        #region Метод добавления и сохранения изменений услуги в базе данных
+
         bool flagCost = false;
         bool flagDis = false;
         bool flagDur = false;
@@ -188,36 +192,5 @@ namespace ServicesAndClients.ViewModels
         }
 
         #endregion
-
-        #region Метод добавления фото
-
-        public async Task AddOnePhoto()
-        {
-           /* if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desctop || desctop.MainWindow?.StorageProvider is not { } provider) throw new NullReferenceException("провайдер отсутствует");
-
-            var file = await provider.OpenFilePickerAsync(
-                new FilePickerOpenOptions()
-                {
-                    Title = "Выберите изображение",
-                    AllowMultiple = false,
-                    FileTypeFilter = [FilePickerFileTypes.All, FilePickerFileTypes.ImageAll]
-                }
-                );
-            if (file != null)
-            {
-                await using var readStream = await file[0].OpenReadAsync();
-                byte[] buffer = new byte[readStream.Length];
-                readStream.ReadAtLeast(buffer, 1);
-                NewService.MainImagePath = buffer;
-
-                MainWindowViewModel.myConnection.SaveChanges();
-                MainWindowViewModel.Instance.PageContent = new PageAddEditServ(NewService.Id);
-                string Messege = "Изображение успешно изменено!";
-                ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением!", Messege, ButtonEnum.Ok).ShowAsync();
-            }*/
-        }
-
-        #endregion
-
     }
 }
