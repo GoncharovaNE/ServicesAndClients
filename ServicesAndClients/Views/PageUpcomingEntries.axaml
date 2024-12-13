@@ -12,7 +12,7 @@
 			<TextBlock Classes="head" Text="Ближайшие записи"></TextBlock>
 			<StackPanel Classes="Serv">
 				<Button Command="{Binding ToMainPage}" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Назад"></Button>
-				<Button Classes="BTBack" Content="Таймер"></Button>
+				<TextBlock Text="{Binding CountdownToNextUpdate}" FontSize="14" Foreground="Gray" Margin="10 6 0 0" />
 			</StackPanel>
 			<TextBlock Classes="headServ" Text="Список ближайших записей"></TextBlock>
 		</StackPanel>
@@ -23,12 +23,12 @@
 						<Border Classes="Service">
 							<StackPanel Classes="Serv">								
 								<StackPanel>
-									<TextBlock Text="{Binding Service.Title}"></TextBlock>
-									<!--<StackPanel Classes="Serv">
-										<TextBlock Classes="UpdateCost" Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>
-										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
-									</StackPanel>
-									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>-->									
+									<TextBlock Text="{Binding Service.Title, StringFormat='Услуга: {0}'}"></TextBlock>
+									<TextBlock Text="{Binding Client.fio, StringFormat='Клиент: {0}'}"></TextBlock>
+									<TextBlock Text="{Binding Client.Email, StringFormat='Почта: {0}'}"></TextBlock>
+									<TextBlock Text="{Binding Client.Phone, StringFormat='Телефон: {0}'}"></TextBlock>
+									<TextBlock Text="{Binding StartTime, StringFormat='Дата и время записи: {0:f}'}"></TextBlock>
+									<TextBlock Text="{Binding TimeRemaining, StringFormat='Осталось времени до начала услуги: {0}'}" Foreground="{Binding ColorTime}"></TextBlock>																
 								</StackPanel>
 							</StackPanel>
 						</Border>
