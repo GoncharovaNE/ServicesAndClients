@@ -28,6 +28,8 @@ namespace ServicesAndClients.ViewModels
 
         #endregion
 
+        #region Создание новой записи на услугу, свойства и метод для полей ввода
+
         ClientService? _entry;
         public ClientService? Entry { get => _entry; set => this.RaiseAndSetIfChanged(ref _entry, value); }
 
@@ -92,6 +94,10 @@ namespace ServicesAndClients.ViewModels
             _entry = new ClientService() { };
         }
 
+        #endregion
+
+        #region Метод добавления записи на услугу в базу данных
+
         public async void SaveAddEntry()
         {
             try
@@ -132,5 +138,7 @@ namespace ServicesAndClients.ViewModels
                 MessageBoxManager.GetMessageBoxStandard("Внимание", ex.Message + "\n" + ex.StackTrace, MsBox.Avalonia.Enums.ButtonEnum.Ok).ShowAsync();
             }
         }
+
+        #endregion
     }
 }

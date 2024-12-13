@@ -29,6 +29,11 @@ namespace ServicesAndClients.ViewModels
         {
             MainWindowViewModel.Instance.PageContent = new PageAddEntry(id);
         }
+        
+        public void ToPageUpcomingEntries()
+        {
+            MainWindowViewModel.Instance.PageContent = new PageUpcomingEntries();
+        }
 
 
         #endregion

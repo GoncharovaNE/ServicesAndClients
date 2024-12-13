@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:ServicesAndClients.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ServicesAndClients.PageUpcomingEntries"
+			 x:DataType="vm:PageUpcomingEntriesVM">	
+	
+	<Grid RowDefinitions="14*,65*">
+		<StackPanel Grid.Row="0">
+			<TextBlock Classes="head" Text="Ближайшие записи"></TextBlock>
+			<StackPanel Classes="Serv">
+				<Button Command="{Binding ToMainPage}" CommandParameter="{Binding IsAdmin}" Classes="BTBack" Content="Назад"></Button>
+				<Button Classes="BTBack" Content="Таймер"></Button>
+			</StackPanel>
+			<TextBlock Classes="headServ" Text="Список ближайших записей"></TextBlock>
+		</StackPanel>
+		<ScrollViewer Grid.Row="1">
+			<ListBox ItemsSource="{Binding Entries}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border Classes="Service">
+							<StackPanel Classes="Serv">								
+								<StackPanel>
+									<TextBlock Text="{Binding Service.Title}"></TextBlock>
+									<!--<StackPanel Classes="Serv">
+										<TextBlock Classes="UpdateCost" Text="{Binding Cost}" TextDecorations="Strikethrough" IsVisible="{Binding IsVisCostWithDis}"></TextBlock>
+										<TextBlock Text="{Binding CostAndMin}"></TextBlock>
+									</StackPanel>
+									<TextBlock Text="{Binding DiscountFormat}"></TextBlock>-->									
+								</StackPanel>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
