@@ -14,7 +14,10 @@ namespace ServicesAndClients.ViewModels
     internal class MainPageVM: ViewModelBase
     {
         #region Переход по страницам
-
+        /// <summary>
+        /// четыре метода для реализации переходов по страницам: добавление/редактирование услуги, 
+        /// добавление записи на услугу, ближайщие записи на услуги
+        /// </summary>
         public void ToPageAddServ()
         {
             MainWindowViewModel.Instance.PageContent = new PageAddEditServ();
@@ -35,15 +38,21 @@ namespace ServicesAndClients.ViewModels
             MainWindowViewModel.Instance.PageContent = new PageUpcomingEntries();
         }
 
-
         #endregion
 
         #region Элементы для главной страницы
 
+        /// <summary>
+        /// реализованы поле и свойство для списка услуг
+        /// </summary>
         List<Service> servicesList;
 
         public List<Service> ServicesList { get => servicesList; set => this.RaiseAndSetIfChanged(ref servicesList, value); }
 
+        /// <summary>
+        /// два конструктора для считывания данных об услугах в лист, 
+        /// во втором реализовано свойство для запоминания состояния режима администратора
+        /// </summary>
         public MainPageVM()
         {
             ServicesList = MainWindowViewModel.myConnection.Services.Include(x => x.ClientServices).ToList();
@@ -56,6 +65,9 @@ namespace ServicesAndClients.ViewModels
             IsVisitableAdmin = false;
         }
 
+        /// <summary>
+        /// поля и свойства для отображения функционала только в режиме администратора 
+        /// </summary>
         bool isVisitableEditDelBut = false;
         
         bool isVisitableAdmin = true;
@@ -65,7 +77,9 @@ namespace ServicesAndClients.ViewModels
         public string KodAdmin { get => kodAdmin; set => this.RaiseAndSetIfChanged(ref kodAdmin, value); }
         public bool IsVisitableEditDelBut { get => isVisitableEditDelBut; set => this.RaiseAndSetIfChanged(ref isVisitableEditDelBut, value); }
         public bool IsVisitableAdmin { get => isVisitableAdmin; set => this.RaiseAndSetIfChanged(ref isVisitableAdmin, value); }
-
+        /// <summary>
+        /// метод для проверки коррекности введённого кода администратора
+        /// </summary>
         public async void GetKodAdmin()
         {
             if (KodAdmin == null || KodAdmin != "0000")
@@ -84,20 +98,28 @@ namespace ServicesAndClients.ViewModels
             }
             KodAdmin = "";
         }
-
+        /// <summary>
+        /// метод для возврата в пользовательский режим
+        /// </summary>
         public async void ClienеMode()
         {
             IsVisitableAdmin = true;
             IsVisitableEditDelBut = false;
-            string Messege = "Режим клиента активирован!";
+            string Messege = "Режим пользователя активирован!";
             ButtonResult result = await MessageBoxManager.GetMessageBoxStandard("Сообщение с уведомлением!", Messege, ButtonEnum.Ok).ShowAsync();
             KodAdmin = "";
         }
 
         #endregion
 
-        #region Сортировка,поиск и фильтрация
-
+        #region Сортировка, поиск и фильтрация
+        /// <summary>
+        /// поля и свойства для количества элементов в списке с услугами,
+        /// поиска услуги по её названию и описанию,
+        /// сортировки по стоимости,
+        /// фильтрации по скидке
+        /// и для отслеживания результата не найденых услуг
+        /// </summary>
         int _countItemsList = MainWindowViewModel.myConnection.Services.ToList().Count;
 
         public int CountItemsList { get => _countItemsList; set => this.RaiseAndSetIfChanged(ref _countItemsList, value); }
@@ -121,7 +143,9 @@ namespace ServicesAndClients.ViewModels
             get => _noResults;
             set => this.RaiseAndSetIfChanged(ref _noResults, value);
         }
-
+        /// <summary>
+        /// метод с для одновременного применения поиска, сортировки и фильтрации
+        /// </summary>
         public void filtersService()
         {
             ServicesList = MainWindowViewModel.myConnection.Services.Include(x => x.ClientServices).ToList();
@@ -182,12 +206,17 @@ namespace ServicesAndClients.ViewModels
                     break;
             }
 
-            NoResults = ServicesList.Count == 0;
+            if (CountItemsList == 0) NoResults = true;
+            else NoResults = false;
         }
 
         #endregion
 
         #region Удаление услуги
+        /// <summary>
+        /// метод удаления услуги по её индификатору
+        /// </summary>
+        /// <param name="id"></param>
         public async void DeleteService(int id)
         {            
             string Messege = "Вы уверенны, что хотите удалить данную услугу?";

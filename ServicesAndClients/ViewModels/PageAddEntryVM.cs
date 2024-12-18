@@ -12,7 +12,7 @@ namespace ServicesAndClients.ViewModels
 {
     internal class PageAddEntryVM:ViewModelBase
     {
-        #region Переход по страницам и их заголовки
+        #region Переход по страницам, их заголовки и сохранение режима администратора
 
         bool _isAdmin = true;
         public bool IsAdmin { get => _isAdmin; set => _isAdmin = value; }
@@ -97,7 +97,6 @@ namespace ServicesAndClients.ViewModels
         #endregion
 
         #region Метод добавления записи на услугу в базу данных
-
         public async void SaveAddEntry()
         {
             try

@@ -21,7 +21,7 @@ namespace ServicesAndClients.ViewModels
 {
     internal class PageAddEditServVM: ViewModelBase
     {
-        #region Переход по страницам и их заголовки
+        #region Переход по страницам, их заголовки и сохранение режима администратора
 
         bool _isAdmin = true;
         public bool IsAdmin { get => _isAdmin; set => _isAdmin = value; }

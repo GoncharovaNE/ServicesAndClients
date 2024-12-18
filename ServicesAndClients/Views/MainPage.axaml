@@ -12,7 +12,7 @@
 		<conv:ImageConvert x:Key="ImageConvert"></conv:ImageConvert>
 	</UserControl.Resources>
 
-	<Grid RowDefinitions="14*,65*,7*">
+	<Grid RowDefinitions="18*,65*,7*">
 		<StackPanel Grid.Row="0">
 			<StackPanel Classes="Filter">
 				<Image Height="25" Source="/Assets/school_logo.ico"></Image>
@@ -37,12 +37,12 @@
 			<TextBox Classes="KodAdmin" Watermark="Введите код администратора" Text="{Binding KodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></TextBox>
 			<Button Classes="ServBT" Content="Подтвердить" Command="{Binding GetKodAdmin}" IsVisible="{Binding IsVisitableAdmin}"></Button>
 				<Button Classes="ServBT" Margin="0 0 10 0" Content="Ближайшие записи" Command="{Binding ToPageUpcomingEntries}" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
-			<Button Classes="ServBT" Content="Вернуться в клиентский режим" Command="{Binding ClienеMode}" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
+			<Button Classes="ServBT" Content="Вернуться в пользовательский режим" Command="{Binding ClienеMode}" IsVisible="{Binding IsVisitableEditDelBut}"></Button>
 		</StackPanel>
 		<TextBlock Classes="headServ" Text="Список услуг"></TextBlock>
 		<TextBlock Classes="InfoSearch" Text="Результаты не найдены" IsVisible="{Binding NoResults}"/>
-	</StackPanel>
-		<ScrollViewer Grid.Row="1">			
+	</StackPanel>		
+		<ScrollViewer Grid.Row="1">
 			<ListBox ItemsSource="{Binding ServicesList}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>

@@ -15,6 +15,7 @@
 				<TextBlock Text="{Binding CountdownToNextUpdate}" FontSize="14" Foreground="Gray" Margin="10 6 0 0" />
 			</StackPanel>
 			<TextBlock Classes="headServ" Text="Список ближайших записей"></TextBlock>
+			<TextBlock Classes="InfoSearch" Text="Ближайших записей пока нет" IsVisible="{Binding NoResults}"/>
 		</StackPanel>
 		<ScrollViewer Grid.Row="1">
 			<ListBox ItemsSource="{Binding Entries}">
