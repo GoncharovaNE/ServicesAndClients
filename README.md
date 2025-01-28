@@ -178,7 +178,7 @@
 ## Установка
 
 - **Откройте** один из браузеров: _Chrome_,_Opera_,_MicrosoftEdge_
-- **Перейдите** на сайт по ссылке: http://gogs.ngknn.ru:3000/GoncharovaNE33P/Foreign_Language_School.git
+- **Перейдите** на сайт по ссылке: http://gogs.ngknn.ru:3000/GoncharovaNE33P/ServicesAndClients.git
 
 - **Скачайте** архивный файл (ZIP):
 <p class="fig">
