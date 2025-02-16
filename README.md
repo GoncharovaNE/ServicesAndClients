@@ -1,8 +1,3 @@
-<style>
-   .fig {
-    text-align: center; 
-   }
-  </style>
 <h1 class="fig">Школа для иностранных языков</h1>
 
 <img src="ServicesAndClients/Assets/school_logo.ico" width="100%">
