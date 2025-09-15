@@ -173,7 +173,7 @@
 ## Установка
 
 - **Откройте** один из браузеров: _Chrome_,_Opera_,_MicrosoftEdge_
-- **Перейдите** на сайт по ссылке: [https://github.com/GoncharovaNE33P/ServicesAndClients.git](https://github.com/GoncharovaNE33P/ServicesAndClients.git)
+- **Перейдите** на сайт по ссылке: [https://github.com/GoncharovaNE/ServicesAndClients.git](https://github.com/GoncharovaNE/ServicesAndClients.git)
 
 - **Скачайте** архивный файл (ZIP):
 <p class="fig">
@@ -183,4 +183,4 @@
 - **Разархивируйте** скаченный файл, запустите приложение, найдя и открыв файл **ServicesAndClients.exe** в папке **net8.0** в архиве bin по следующему пути: _ServicesAndClients > bin > Debug > net8.0_
 
 ## Авторы
-- **Гончарова Надежда** - главный разработчик - [Профиль с другими проектами](https://github.com/GoncharovaNE33P)
+- **Гончарова Надежда** - главный разработчик - [Профиль с другими проектами](https://github.com/GoncharovaNE)
