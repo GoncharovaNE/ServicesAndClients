@@ -1,6 +1,6 @@
 <h1 class="fig">Школа для иностранных языков</h1>
 
-<img src="ServicesAndClients/Assets/school_logo.ico" width="100%">
+<img src="ServicesAndClients/Assets/school_logo.ico" width="50%">
 
 ## Описание
 <p class="fig">
@@ -177,7 +177,7 @@
 
 - **Скачайте** архивный файл (ZIP):
 <p class="fig">
-<img  src="image-1.png" width="80%">
+<img  src="image-1.png" width="50%">
 </p>
 
 - **Разархивируйте** скаченный файл, запустите приложение, найдя и открыв файл **ServicesAndClients.exe** в папке **net8.0** в архиве bin по следующему пути: _ServicesAndClients > bin > Debug > net8.0_
